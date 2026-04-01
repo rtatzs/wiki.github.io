@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Wiki</title>
+
+```
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f6f6f6;
+        color: #202122;
+    }
+
+    header {
+        background: #ffffff;
+        border-bottom: 1px solid #ccc;
+        padding: 12px 20px;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .container {
+        display: flex;
+    }
+
+    .sidebar {
+        width: 240px;
+        background: #ffffff;
+        border-right: 1px solid #ccc;
+        padding: 15px;
+        height: 100vh;
+        box-sizing: border-box;
+    }
+
+    .sidebar a {
+        display: block;
+        color: #0645ad;
+        text-decoration: none;
+        margin: 6px 0;
+        cursor: pointer;
+    }
+
+    .sidebar a:hover {
+        text-decoration: underline;
+    }
+
+    .content {
+        flex: 1;
+        padding: 25px;
+        background: #ffffff;
+    }
+
+    .infobox {
+        float: right;
+        width: 200px;
+        background: #f8f9fa;
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin: 10px;
+    }
+
+    pre {
+        background: #f6f8fa;
+        padding: 10px;
+        border-radius: 5px;
+    }
+</style>
+```
+
+</head>
+
+<body>
+
+<header>My Personal Wiki</header>
+
+<div class="container">
+    <div class="sidebar">
+        <h3>Contents</h3>
+        <a onclick="loadPage('home')">Home</a>
+        <a onclick="loadPage('flask')">Flask Guide</a>
+        <a onclick="loadPage('vue')">Vue Notes</a>
+    </div>
+
+```
+<div class="content" id="content">
+    <h1>Welcome</h1>
+    <p>Select a topic from the sidebar.</p>
+</div>
+```
+
+</div>
+
+<script>
+function loadPage(page) {
+    const content = document.getElementById('content');
+
+    if (page === 'home') {
+        content.innerHTML = "<h1>Home</h1><p>Welcome to your wiki.</p>";
+    }
+
+    if (page === 'flask') {
+        content.innerHTML = `
+            <h1>Flask Guide</h1>
+            <div class="infobox">
+                <b>Language:</b> Python<br>
+                <b>Framework:</b> Flask
+            </div>
+            <pre><code>flask run --port 5140</code></pre>
+
+```
+    `;
+}
+
+if (page === 'vue') {
+    content.innerHTML = `
+        <h1>Vue Notes</h1>
+        <pre><code>new Vue({ el: '#app' })</code></pre>
+    `;
+}
+```
+
+} </script>
+
+</body>
+</html>
