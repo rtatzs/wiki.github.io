@@ -11,6 +11,13 @@
 <!-- DROPDOWN NAVBAR -->
 <div class="navbar">
   <div class="dropdown">
+    <b>
+        <span style="nav-brand"> 
+            The Archives
+        </span>
+    </b>
+  </div>
+  <div class="dropdown">
     <div class="dropbtn">DevOps▾</div>
     <div class="dropdown-content">
       <div class="sub-dropdown">
@@ -28,7 +35,7 @@
   <div class="dropdown">
     <div class="dropbtn">Tools ▾</div>
     <div class="dropdown-content">
-      <a onclick="showCategory('html')">Link</a>
+      <a onclick="showCategory('Link')">Link</a>
       <a onclick="showCategory('html')">Git</a>
       <a onclick="showCategory('html')">Github</a>
       <a onclick="showCategory('html')">ChatGPT</a>
@@ -81,68 +88,49 @@
 </div>
 
 <header>
-  <h1>💻 Coding Explainer</h1>
-  <p>Learn core concepts quickly</p>
+  <h1 id="Title">💻 Coding Explainer 💻 </h1>
+  <p id="Desc">Learn core concepts quickly</p>
 </header>
 
-<section>
-
-  <!-- VARIABLES DETAIL -->
-  <div class="card category var-let hidden">
-    <h2>let</h2>
-    <pre>let x = 10;</pre>
-    <p>Block-scoped and can be reassigned.</p>
-  </div>
-
-  <div class="card category var-const hidden">
-    <h2>const</h2>
-    <pre>const x = 10;</pre>
-    <p>Block-scoped but cannot be reassigned.</p>
-  </div>
-
-  <div class="card category var-var hidden">
-    <h2>var</h2>
-    <pre>var x = 10;</pre>
-    <p>Function-scoped and older style.</p>
-  </div>
-
-  <!-- JS -->
-  <div class="card category js">
-    <h2>Functions</h2>
-    <pre>function greet() {}</pre>
-    <p>Reusable blocks of code.</p>
-  </div>
-
-  <!-- HTML -->
-  <div class="card category html hidden">
-    <h2>Tags</h2>
-    <pre>&lt;h1&gt;Hello&lt;/h1&gt;</pre>
-    <p>Basic building blocks of HTML.</p>
-  </div>
-
-  <!-- CSS -->
-  <div class="card category css hidden">
-    <h2>Selectors</h2>
-    <pre>body { color: red; }</pre>
-    <p>Targets elements to style.</p>
-  </div>
-
+<section style="height: calc(100vh - 160px);">
+    <iframe id="contentFrame"
+            src=""
+            style="border:1px solid #ccc; border-radius:8px; width:100%; height:100%; display:block;">
+    </iframe>
 </section>
-
 <script>
-  function showCategory(cat) {
-    document.querySelectorAll('.category').forEach(el => {
-      el.classList.add('hidden');
-    });
 
-    document.querySelectorAll('.' + cat).forEach(el => {
-      el.classList.remove('hidden');
-    });
-  }
+    function showCategory(cat) {
 
-  // default
-  showCategory('js');
+      const Title = document.getElementById('Title');
+      const Desc = document.getElementById('Desc');
+      const Frame = document.getElementById('contentFrame');
+      
+      const routes = {
+        'Home': './pages/Home.html',
+        'Link': './pages/Tools/Links.html',
+      };
+
+      const titles = {
+        'Home': 'My Custom wiki',
+        'Link': 'List of Links',
+  
+      };
+
+      const descs = {
+          'Home': 'This is my custom wiki',
+          'Link': 'This page holds links of tools needed.',
+
+      }
+
+      Frame.src = routes[cat] || '';
+      Title.innerHTML  = titles[cat] || 'Undefined Title';
+      Desc.innerHTML  = descs[cat] || 'Undefined Description'
+
+    }
+
+    showCategory('Home');
+
 </script>
-
 </body>
 </html>

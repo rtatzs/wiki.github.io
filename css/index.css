@@ -76,9 +76,13 @@
     }
 
     header {
-      margin-top: 70px;
+      margin-top: 25px;
       padding: 20px;
       text-align: center;
+    }
+
+    header > p {
+        margin-top: -10px;
     }
 
     section {
@@ -90,9 +94,24 @@
     .card {
       background: #020617;
       border: 1px solid #1e293b;
+      display:block;
+      height:auto;
       border-radius: 12px;
-      padding: 20px;
+      margin-top:-10px;
       margin-bottom: 20px;
+    }
+
+    .card > p
+    {
+        margin-top:-12px;
+        margin-left:20px;
+        color: #D3D3D3;
+    }
+
+    .card > h2
+    {
+        margin-left: 20px;
+        margin-top: 10px;
     }
 
     pre {
@@ -117,3 +136,71 @@
     .hidden {
       display: none;
     }
+
+    .iframe-content{
+        margin-top:12px;
+        height: 100%;
+    }
+
+    .jumbotron {
+      margin-top: 15px;
+      margin-left: 20px;
+      margin-bottom: 20px;
+
+    }
+
+    .jumbotron img {
+      width: 50%;
+      height: 50%;
+      object-fit: cover;
+      display: block;
+      border-radius: 10px;
+    }
+
+      /* Basic link style */
+  a {
+    text-decoration: none; /* Remove underline */
+    color: #1a73e8;        /* Primary link color (blue) */
+    font-weight: 500;       /* Slightly bold */
+    transition: all 0.3s ease; /* Smooth hover effect */
+    position: relative;
+  }
+
+  /* Add hover effect */
+  a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    display: block;
+    margin-top: 5px;
+    right: 0;
+    background: #1a73e8;
+    transition: width 0.3s ease;
+    -webkit-transition: width 0.3s ease;
+  }
+
+  a:hover::after {
+    width: 100%;
+    left: 0;
+    background: #ff5722; /* Change underline color on hover */
+  }
+
+  a:hover {
+    color: #ff5722; /* Optional: change text color on hover */
+    cursor: pointer;
+  }
+
+  .nav-brand
+  {
+      font-size:18px;
+      font-color:#ffffff;
+  }
+
+  .tool-link
+  {
+      margin-left:20px;
+      margin-top:-10px;
+      display: inline-block;
+      margin-bottom: 20px;
+  }
