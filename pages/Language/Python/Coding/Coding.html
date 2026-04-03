@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal Wiki</title>
+  <link type="text/css" rel="stylesheet" href="../../../../css/index.css" />
+</head>
+
+<body>
+  <section>
+    <div class="iframe-content">
+      <div class="card">
+        <h2>Coding Python </h2>
+        <p>Includes tutorials, best practices, and resources for coding in Python.</p>
+        <a class="tool-link" href="https://www.w3schools.com/python/" target="_blank"
+          rel="noopener noreferrer">W3Schools</a>
+      </div>
+
+      <div class="card">
+        <h2>MySQL Cursor in Python</h2>
+        <p>access/query results from a MySQL cursor inside a Python function</p>
+        <button class="copy-btn right" onclick="copyFromPre(this)">Copy</button>
+        <pre>
+import mysql.connector
+
+<span class="comment">##Option 1: Using dictionary=True to get results as dictionaries</span>
+def get_users(conn):
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute(<span class="keyword">"SELECT id, name, email FROM users"</span>)
+    for row in cursor.fetchall():
+        print(<span class="highlight">row["id"], row["name"], row["email"]</span>)
+
+<span class="comment">##Option 2: Using column names to access results as tuples</span>
+def get_users(conn):
+    cursor = conn.cursor()
+    cursor.execute(<span class="keyword">"SELECT id, name, email FROM users"</span>)
+    columns = [desc[0] for desc in cursor.description]
+    for row in cursor.fetchall():
+        row_dict = dict(zip(columns, row))
+        print(<span class="highlight">row_dict["id"], row_dict["name"], row_dict["email"]</span>)
+
+<span class="comment">##Option 3: Using namedtuple for more structured access</span>
+from collections import namedtuple
+def get_users(conn):
+    cursor = conn.cursor()
+    cursor.execute(<span class="keyword">"SELECT id, name, email FROM users"</span>) 
+    User = namedtuple("User", [desc[0] for desc in cursor.description])
+    for row in cursor.fetchall():
+        user = User(*row)
+        print(<span class="highlight">user.id, user.name, user.email</span>)
+
+        </pre>
+      </div>
+
+      <div class="card">
+        <h2>Flask + MySQL</h2>
+        <p>Here’s how to properly connect your cursor → Python → JSON response:</p>
+        <button class="copy-btn right" onclick="copyFromPre(this)">Copy</button>
+        <pre>
+from flask import jsonify
+
+<span class="comment">###Example Flask route to get users from MySQL and return as JSON</span>
+def get_users(conn):
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute("SELECT id, name FROM users")
+    rows = cursor.fetchall()
+    return jsonify(rows)
+
+<span class="comment">##Example Flask route to get a single user by ID and return as JSON</span>
+def get_user(conn, user_id):
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute("SELECT id, name FROM users WHERE id = %s", (user_id,))
+    row = cursor.fetchone()
+    return jsonify(row)
+
+<span class="comment">##Example Flask route to get all users and return a structured JSON response</span>
+def get_users(conn):
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute("SELECT id, name FROM users")
+    return jsonify({
+        "status": "success",
+        "data": cursor.fetchall()
+    })    
+        </pre>
+      </div>
+
+    </div>
+  </section>
+  <script>
+    // Function to copy text to clipboard
+    function copyFromPre(button) {
+      const pre = button.parentElement.querySelector("pre");
+      const text = pre.innerText;
+      navigator.clipboard.writeText(text);
+    }
+
+    // Alternative function to copy from inline code blocks    
+    function copyFromCode(button) {
+      const code = button.parentElement.querySelector("code");
+      const text = code.innerText;
+      navigator.clipboard.writeText(text);
+    }
+  </script>
+</body>
+
+</html>

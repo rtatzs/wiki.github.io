@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal Wiki</title>
+  <link type="text/css" rel="stylesheet" href="../../../../css/index.css" />
+</head>
+
+<body>
+  <section>
+    <div class="iframe-content">
+      <div class="card">
+        <h2>Online Documentations</h2>
+        <p>Comprehensive documentation for learning Python Flask.</p>
+        <a class="tool-link" href="https://www.geeksforgeeks.org/python/flask-tutorial/" target="_blank"
+          rel="noopener noreferrer">GeeksforGeeks</a>
+        <a class="tool-link" href="https://flask.palletsprojects.com/en/stable/" target="_blank"
+          rel="noopener noreferrer">Flask Official</a>
+      </div>
+      <div class="card">
+        <h2>Startup commands</h2>
+
+        <div class="code-inline">
+          <code>set FLASK_APP=app</code>
+          <button class="copy-btn" onclick="copyFromCode(this)">Copy</button>
+        </div>
+        <div class="code-inline">
+          <code>flask run --host 0.0.0.0 --port 5140</code>
+          <button class="copy-btn" onclick="copyFromCode(this)">Copy</button>
+        </div>
+        <div class="code-inline">
+          <code>http://localhost:5140/</code>
+          <button class="copy-btn" onclick="copyFromCode(this)">Copy</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Flask app.py</h2>
+        <p>A basic Flask application for demonstration purposes.</p>
+        <button class="copy-btn right" onclick="copyFromPre(this)">Copy</button>
+        <pre>
+## Simple Flask App (app.py)
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def hello_world():
+  return 'Hello World'
+
+if __name__ == '__main__':
+  app.run()
+        </pre>
+      </div>
+
+    </div>
+  </section>
+  <script>
+    // Function to copy text to clipboard
+    function copyFromPre(button) {
+      const pre = button.parentElement.querySelector("pre");
+      const text = pre.innerText;
+      navigator.clipboard.writeText(text);
+    }
+
+    // Alternative function to copy from inline code blocks    
+    function copyFromCode(button) {
+      const code = button.parentElement.querySelector("code");
+      const text = code.innerText;
+      navigator.clipboard.writeText(text);
+    }
+  </script>
+</body>
+
+</html>

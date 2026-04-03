@@ -1,136 +1,150 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Personal Wiki</title>
-  <link type="text/css" rel="stylesheet" href="./css/index.css"/>
+  <link type="text/css" rel="stylesheet" href="./css/index.css" />
 </head>
-<body>
 
-<!-- DROPDOWN NAVBAR -->
-<div class="navbar">
-  <div class="dropdown">
-    <b>
-        <span style="nav-brand"> 
-            The Archives
+<body style="overflow: hidden;">
+
+  <!-- DROPDOWN NAVBAR -->
+  <div class="navbar">
+    <div class="dropdown">
+      <b>
+        <span style="nav-brand">
+          The Archives
         </span>
-    </b>
-  </div>
-  <div class="dropdown">
-    <div class="dropbtn">DevOps▾</div>
-    <div class="dropdown-content">
-      <div class="sub-dropdown">
-        <a>Process ▸</a>
-        <div class="sub-dropdown-content">
-          <a onclick="showCategory('var-let')">Work Flow</a>
-          <a onclick="showCategory('var-const')">Procedures</a>
-          <a onclick="showCategory('var-var')">Rules</a>
-        </div>
-      </div>
-      <a onclick="showCategory('js')">Etc.</a>
+      </b>
     </div>
-  </div>
-
-  <div class="dropdown">
-    <div class="dropbtn">Tools ▾</div>
-    <div class="dropdown-content">
-      <a onclick="showCategory('Link')">Link</a>
-      <a onclick="showCategory('html')">Git</a>
-      <a onclick="showCategory('html')">Github</a>
-      <a onclick="showCategory('html')">ChatGPT</a>
-      <a onclick="showCategory('html')">PythonAnywhere</a>
-      <div class="sub-dropdown">
-        <a>GoogleAPI ▸</a>
-        <div class="sub-dropdown-content">
-          <a onclick="showCategory('var-let')">Google Sheet</a>
-          <a onclick="showCategory('var-const')">Google Drive</a>
-          <a onclick="showCategory('var-var')">Google Task</a>
+    <div class="dropdown">
+      <div class="dropbtn">DevOps▾</div>
+      <div class="dropdown-content">
+        <div class="sub-dropdown">
+          <a>Process ▸</a>
+          <div class="sub-dropdown-content">
+            <a onclick="showCategory('var-let')">Work Flow</a>
+            <a onclick="showCategory('var-const')">Procedures</a>
+            <a onclick="showCategory('var-var')">Rules</a>
+          </div>
         </div>
+        <a onclick="showCategory('js')">Etc.</a>
       </div>
     </div>
-  </div>
 
-  <div class="dropdown">
-    <div class="dropbtn">Languages ▾</div>
-    <div class="dropdown-content">
-       <a onclick="showCategory('html')">General Web</a>
-       <div class="sub-dropdown">
+    <div class="dropdown">
+      <div class="dropbtn">Tools ▾</div>
+      <div class="dropdown-content">
+        <a onclick="showCategory('Link')">Link</a>
+        <a onclick="showCategory('html')">Git</a>
+        <a onclick="showCategory('html')">Github</a>
+        <a onclick="showCategory('html')">ChatGPT</a>
+        <a onclick="showCategory('html')">PythonAnywhere</a>
+        <div class="sub-dropdown">
+          <a>GoogleAPI ▸</a>
+          <div class="sub-dropdown-content">
+            <a onclick="showCategory('var-let')">Google Sheet</a>
+            <a onclick="showCategory('var-const')">Google Drive</a>
+            <a onclick="showCategory('var-var')">Google Task</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <div class="dropbtn">Languages ▾</div>
+      <div class="dropdown-content">
+        <a onclick="showCategory('html')">General Web</a>
+        <a onclick="showCategory('html')">CSS</a>
+        <div class="sub-dropdown">
           <a>Javascript ▸</a>
           <div class="sub-dropdown-content">
             <a onclick="showCategory('var-hoisting')">Coding</a>
             <a onclick="showCategory('var-hoisting')">vue.js</a>
           </div>
         </div>
-      <a onclick="showCategory('html')">CSS</a>
-      <a onclick="showCategory('html')">Python</a>
-    </div>
-  </div>
-
- <div class="dropdown">
-  <a class="dropbtn">Others ▾</a>
-  <div class="dropdown-content">
-    <div class="sub-dropdown">
-      <a>Choices ▸</a>
-      <div class="sub-dropdown-content">
-        <a onclick="showCategory('var-let')">Item A</a>
-        <a onclick="showCategory('var-const')">Item B</a>
         <div class="sub-dropdown">
-          <a>Advanced ▸</a>
+          <a>Python ▸</a>
           <div class="sub-dropdown-content">
-            <a onclick="showCategory('var-hoisting')">Item C</a>
+            <a onclick="showCategory('Flask')">Flask</a>
+            <a onclick="showCategory('Python Coding')">Coding</a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <a class="dropbtn">Others ▾</a>
+      <div class="dropdown-content">
+        <div class="sub-dropdown">
+          <a>Choices ▸</a>
+          <div class="sub-dropdown-content">
+            <a onclick="showCategory('var-let')">Item A</a>
+            <a onclick="showCategory('var-const')">Item B</a>
+            <div class="sub-dropdown">
+              <a>Advanced ▸</a>
+              <div class="sub-dropdown-content">
+                <a onclick="showCategory('var-hoisting')">Item C</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-</div>
 
-<header>
-  <h1 id="Title">💻 Coding Explainer 💻 </h1>
-  <p id="Desc">Learn core concepts quickly</p>
-</header>
+  <header>
+    <h1 id="Title">💻 Coding Explainer 💻 </h1>
+    <p id="Desc">Learn core concepts quickly</p>
+  </header>
 
-<section style="height: calc(100vh - 160px);">
-    <iframe id="contentFrame"
-            src=""
-            style="border:1px solid #ccc; border-radius:8px; width:100%; height:100%; display:block;">
+  <section style="height: calc(100vh - 160px);">
+    <iframe id="contentFrame" src=""
+      style="border:1px solid #ccc; border-radius:8px; width:100%; height:90%; display:block;">
     </iframe>
-</section>
-<script>
+  </section>
+  <script>
 
     function showCategory(cat) {
 
       const Title = document.getElementById('Title');
       const Desc = document.getElementById('Desc');
       const Frame = document.getElementById('contentFrame');
-      
+
       const routes = {
         'Home': './pages/Home.html',
         'Link': './pages/Tools/Links.html',
+        'Flask': './pages/Language/Python/Flask/Flask.html',
+        'Python Coding': './pages/Language/Python/Coding/Coding.html',
       };
 
       const titles = {
         'Home': 'My Custom wiki',
         'Link': 'List of Links',
-  
+        'Flask': 'Python Flask Resources',
+        'Python Coding': 'Python Coding Resources',
+
       };
 
       const descs = {
-          'Home': 'This is my custom wiki',
-          'Link': 'This page holds links of tools needed.',
-
+        'Home': 'This is my custom wiki',
+        'Link': 'This page holds links of tools needed.',
+        'Flask': 'Resources for learning Python Flask.',
+        'Python Coding': 'Includes tutorials, best practices, and resources for coding in Python.',
       }
 
       Frame.src = routes[cat] || '';
-      Title.innerHTML  = titles[cat] || 'Undefined Title';
-      Desc.innerHTML  = descs[cat] || 'Undefined Description'
+      Title.innerHTML = titles[cat] || 'Undefined Title';
+      Desc.innerHTML = descs[cat] || 'Undefined Description'
 
     }
 
     showCategory('Home');
 
-</script>
+  </script>
 </body>
+
 </html>
