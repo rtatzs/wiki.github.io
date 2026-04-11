@@ -274,3 +274,43 @@
  pre>.highlight {
    color: #f1c40f;
  }
+
+ .modal {
+   position: fixed;
+   inset: 0;
+   background: rgba(0, 0, 0, 0.7);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   z-index: 9999;
+ }
+
+ .modal-box {
+   background: #111;
+   padding: 30px;
+   border-radius: 10px;
+   text-align: center;
+   color: #fff;
+   width: 300px;
+ }
+
+ .modal-box input {
+   width: 100%;
+   padding: 10px;
+   margin: 15px 0;
+   border-radius: 5px;
+   border: none;
+ }
+
+ .modal-box button {
+   padding: 10px 20px;
+   background: #00c3ff;
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+ }
+
+ #errorMsg {
+   color: red;
+   font-size: 12px;
+ }

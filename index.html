@@ -32,7 +32,7 @@
             <a onclick="showCategory('var-var')">Rules</a>
           </div>
         </div>
-        <a onclick="showCategory('js')">Etc.</a>
+        <a onclick="showCategory('secured-api')">Etc.</a>
       </div>
     </div>
 
@@ -144,6 +144,15 @@
       style="border:1px solid #ccc; border-radius:8px; width:100%; height:90%; display:block;">
     </iframe>
   </section>
+  <!-- MODAL -->
+  <div id="passModal" class="modal">
+    <div class="modal-box">
+      <h2>Enter Passkey</h2>
+      <input type="password" id="passInput" placeholder="Enter key..." />
+      <button id="unlockBtn">Unlock</button>
+      <p id="errorMsg"></p>
+    </div>
+  </div>
   <script>
 
     function showCategory(cat) {
@@ -157,6 +166,7 @@
         'Link': './pages/Tools/Links.html',
         'Flask': './pages/Language/Python/Flask/Flask.html',
         'Python Coding': './pages/Language/Python/Coding/Coding.html',
+        'secured-api': './pages/Secured.html?content=lifenavapi'
       };
 
       const titles = {
@@ -164,7 +174,7 @@
         'Link': 'List of Links',
         'Flask': 'Python Flask Resources',
         'Python Coding': 'Python Coding Resources',
-
+        'secured-api': 'Life Nav API'
       };
 
       const descs = {
@@ -172,15 +182,47 @@
         'Link': 'This page holds links of tools needed.',
         'Flask': 'Resources for learning Python Flask.',
         'Python Coding': 'Includes tutorials, best practices, and resources for coding in Python.',
+        'secured-api': 'Details of lifenav API calls'
       }
 
       Frame.src = routes[cat] || '';
       Title.innerHTML = titles[cat] || 'Undefined Title';
       Desc.innerHTML = descs[cat] || 'Undefined Description'
 
+      Frame.onload = () => {
+        Frame.contentWindow.postMessage({
+          passKey: window.passKey
+        }, "*");
+      };
+
     }
 
     showCategory('Home');
+
+    const iframe = document.getElementById("secureFrame");
+    const modal = document.getElementById("passModal");
+    const input = document.getElementById("passInput");
+    const btn = document.getElementById("unlockBtn");
+    const errorMsg = document.getElementById("errorMsg");
+
+    btn.onclick = () => {
+      const key = input.value.trim();
+
+      if (!key) {
+        errorMsg.textContent = "Passkey required";
+        return;
+      }
+
+      window.passKey = key;
+
+      // Optional: hide modal immediately
+      modal.style.display = "none";
+    };
+
+    // Optional: press Enter to unlock
+    input.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") btn.click();
+    });
 
   </script>
 </body>

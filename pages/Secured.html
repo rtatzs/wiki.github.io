@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Wiki</title>
+    <link type="text/css" rel="stylesheet" href="../css/index.css" />
+    <script src="./encrypted/secured-content.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #2c3e50;
+        }
+
+        header {
+            background: #2c3e50;
+            color: white;
+            padding: 15px 20px;
+        }
+
+        .container {
+            display: flex;
+        }
+
+        nav {
+            width: 250px;
+            background: #34495e;
+            color: white;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        main {
+            flex: 1;
+            padding: 0px 10px 10px;
+            background: #2c3e50;
+        }
+
+        .endpoint {
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            border-radius: 2px;
+        }
+
+        .endpoint-header {
+            background: #1e293b;
+            padding: 10px;
+            font-weight: bold;
+        }
+
+        .method {
+            padding: 3px 8px;
+            border-radius: 1px;
+            color: white;
+            margin-right: 10px;
+        }
+
+        .GET {
+            background: #27ae60;
+            border-radius: 5px;
+        }
+
+        .POST {
+            background: #2980b9;
+            border-radius: 5px;
+        }
+
+        .PUT {
+            background: #f39c12;
+            border-radius: 5px;
+        }
+
+        .DELETE {
+            background: #c0392b;
+            border-radius: 5px;
+        }
+
+        .endpoint-body {
+            padding: 15px;
+        }
+
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 10px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <div class="iframe-content" id="iframe-content">
+
+        </div>
+    </section>
+    <script>
+        async function deriveKey(password, salt) {
+            const enc = new TextEncoder();
+            const keyMaterial = await crypto.subtle.importKey(
+                "raw",
+                enc.encode(password),
+                "PBKDF2",
+                false,
+                ["deriveKey"]
+            );
+
+            return crypto.subtle.deriveKey(
+                {
+                    name: "PBKDF2",
+                    salt: salt,
+                    iterations: 100000,
+                    hash: "SHA-256",
+                },
+                keyMaterial,
+                {
+                    name: "AES-GCM",
+                    length: 256
+                },
+                false,
+                ["decrypt"]
+            );
+        }
+        async function decryptHTML(base64Data, password) {
+
+            const raw = Uint8Array.from(atob(base64Data), c => c.charCodeAt(0));
+            const salt = raw.slice(0, 16);
+            const iv = raw.slice(16, 32);
+            const tag = raw.slice(32, 48);
+            const ciphertext = raw.slice(48);
+            const key = await deriveKey(password, salt);
+            const decrypted = await crypto.subtle.decrypt(
+                {
+                    name: "AES-GCM",
+                    iv: iv,
+                    tagLength: 128
+                },
+                key,
+                concatBuffers(ciphertext, tag)
+            );
+            const result = new TextDecoder().decode(decrypted);
+            return result
+        }
+        function concatBuffers(a, b) {
+            const result = new Uint8Array(a.length + b.length);
+            result.set(a);
+            result.set(b, a.length);
+            return result;
+        }
+
+        window.addEventListener("message", (event) => {
+
+            const data = event.data;
+            const passKey = data.passKey;
+
+            (async () => {
+
+                const params = new URLSearchParams(window.location.search);
+                const content = params.get("content");
+                let contentHtml = `<div>No secured content</div>`;
+
+                switch (content) {
+                    case "lifenavapi":
+                        contentHtml = await decryptHTML(lifenavEncrypted, passKey);
+                        break;
+                }
+
+                document.getElementById("iframe-content").innerHTML = contentHtml;
+            })();
+        });
+    </script>
+</body>
+
+</html>
