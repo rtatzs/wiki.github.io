@@ -215,13 +215,29 @@
 
       window.passKey = key;
 
-      // Optional: hide modal immediately
       modal.style.display = "none";
     };
 
     // Optional: press Enter to unlock
     input.addEventListener("keypress", (e) => {
       if (e.key === "Enter") btn.click();
+    });
+
+
+    function openPassModal() {
+
+      // or "block" depending on your CSS
+      modal.style.display = "flex";
+
+      //input.focus(); 
+    }
+
+    // Listen for key press
+    document.addEventListener("keydown", function (event) {
+
+      if (event.key === "K") {
+        openPassModal();
+      }
     });
 
   </script>
