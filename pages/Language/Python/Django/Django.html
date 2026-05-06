@@ -11,51 +11,55 @@
 <body>
   <section>
     <div class="iframe-content">
+
       <div class="card">
-        <h2>Online Documentations</h2>
-        <p>Comprehensive documentation for learning Python Flask.</p>
-        <a class="tool-link" href="https://www.geeksforgeeks.org/python/flask-tutorial/" target="_blank"
-          rel="noopener noreferrer">GeeksforGeeks</a>
-        <a class="tool-link" href="https://flask.palletsprojects.com/en/stable/" target="_blank"
-          rel="noopener noreferrer">Flask Official</a>
-      </div>
-      <div class="card">
-        <h2>Startup commands</h2>
-        <div class="code-inline">
-          <code>source ../venv/bin/activate</code>
-          <button class="copy-btn" onclick="copyFromCode(this)">Copy</button>
-        </div>
-        <div class="code-inline">
-          <code>set FLASK_APP=app</code>
-          <button class="copy-btn" onclick="copyFromCode(this)">Copy</button>
-        </div>
-        <div class="code-inline">
-          <code>flask run --host 0.0.0.0 --port 5140</code>
-          <button class="copy-btn" onclick="copyFromCode(this)">Copy</button>
-        </div>
-        <div class="code-inline">
-          <code>http://localhost:5140/</code>
-          <button class="copy-btn" onclick="copyFromCode(this)">Copy</button>
-        </div>
+        <h2>Online Documentation</h2>
+        <p>Comprehensive documentation for learning Python Django.</p>
       </div>
 
       <div class="card">
-        <h2>Flask app.py</h2>
-        <p>A basic Flask application for demonstration purposes.</p>
-        <button class="copy-btn right" onclick="copyFromPre(this)">Copy</button>
-        <pre>
-## Simple Flask App (app.py)
-from flask import Flask
+        <h2>Startup Commands (Django)</h2>
 
-app = Flask(__name__)
+        <div class="code-inline">
+          <code>python -m venv venv</code>
+          <button class="copy-btn" onclick="copyFromCode(this)">Copy</button>
+        </div>
 
-@app.route('/')
-def hello_world():
-  return 'Hello World'
+        <div class="code-inline">
+          <code>source venv/bin/activate</code>
+          <button class="copy-btn" onclick="copyFromCode(this)">Copy</button>
+        </div>
 
-if __name__ == '__main__':
-  app.run()
-        </pre>
+        <div class="code-inline">
+          <code>pip install django</code>
+          <button class="copy-btn" onclick="copyFromCode(this)">Copy</button>
+        </div>
+
+        <div class="code-inline">
+          <code>django-admin startproject myproject</code>
+          <button class="copy-btn" onclick="copyFromCode(this)">Copy</button>
+        </div>
+
+        <div class="code-inline">
+          <code>cd myproject</code>
+          <button class="copy-btn" onclick="copyFromCode(this)">Copy</button>
+        </div>
+
+        <div class="code-inline">
+          <code>python manage.py migrate</code>
+          <button class="copy-btn" onclick="copyFromCode(this)">Copy</button>
+        </div>
+
+        <div class="code-inline">
+          <code>python manage.py runserver</code>
+          <button class="copy-btn" onclick="copyFromCode(this)">Copy</button>
+        </div>
+
+        <div class="code-inline">
+          <code>http://127.0.0.1:8000/</code>
+          <button class="copy-btn" onclick="copyFromCode(this)">Copy</button>
+        </div>
+
       </div>
 
     </div>
